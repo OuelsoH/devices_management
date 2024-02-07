@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const env = require("./config/env");
 const userRouter = require("./routes/users.route");
+const deviceRouter = require("./routes/devices.route");
 const db_connection = require("./config/db");
 const customError =  require("./helpers/errorHandler")
 
@@ -16,6 +17,7 @@ db_connection.connect((err) => {
 });
 
 app.use("/api/users/", userRouter);
+app.use("/api/devices/", deviceRouter);
 
 app.use((req, res) => {
   res.send("not found");

@@ -1,4 +1,4 @@
-const {readAllUsers} = require("../models/users.model")
+const {readAllUsers, readUser } = require("../models/users.model")
 
 const getAllUsers=((req, res)=>{
     readAllUsers((err, results)=>{
@@ -15,6 +15,19 @@ const getAllUsers=((req, res)=>{
 
 })
 
+const getUser=((req, res)=>{
+    const {id} = req.params;
+    readUser(id, (err, results)=>{
+        if(err) throw err
+        res.send(results)
+    })
+
+    console.log("user getted")
+    // res.send("user getted")
+
+})
+
 module.exports= {
-    getAllUsers
+    getAllUsers,
+    getUser
 }
